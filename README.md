@@ -5,13 +5,18 @@
 - 여러 버튼에서 하나의 Command를 공유할 수 있으므로 모든 컨트롤마다 Click 이벤트를 만드는 방법보다 효율적이기 때문이다.
 
 ## XAML
+- TextBox는 ViewModel의 SelectedEmp Property의 Name을 바인딩한다.   
+- Button은 ViewModel에 있는 AddEmpCommand에 바인딩되어있다.
+- Button의 Parameter는 바로 상단에 있는 TextBox{x:txtName}를 바인딩한다.
+- ListBox의 ItemSource는 ViewModel의 ObservableCollection의   
+  PropertyName이 Emps이기 때문에 그 이름을 바인딩한 것이다.
 ```html
 <Window x:Class="MVVMSample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MVVMSample" <!--xmlns:local=local namespace 지정-->
+        xmlns:local="clr-namespace:MVVMSample"
         mc:Ignorable="d"
         Title="MainWindow" Height="319.286" Width="636.071">
     <Window.DataContext>
@@ -20,7 +25,7 @@
     <StackPanel>
         <TextBlock>사원 이름을 입력하세요</TextBlock>
         <TextBox x:Name="txtName" Text="{Binding SelectedEmp.Name}"/>
-      <Button Command="{Binding AddEmpCommand}"
+        <Button Command="{Binding AddEmpCommand}"
               CommandParameter="{Binding Text, ElementName=txtName}">Add</Button>
         <ListBox ItemsSource="{Binding Emps}"
                  SelectedItem="{Binding SelectedEmp}"
