@@ -23,8 +23,6 @@ namespace MVVMSample
         public MainWindow()
         {
             InitializeComponent();
-
-            UserViewModel userViewModel = new UserViewModel();
         }
     }
 }
