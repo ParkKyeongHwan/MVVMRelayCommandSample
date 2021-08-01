@@ -1,0 +1,24 @@
+﻿<Window x:Class="MVVMSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMSample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="319.286" Width="636.071">
+    <Window.DataContext>
+        <local:UserViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <TextBlock>사원 이름을 입력하세요</TextBlock>
+        <TextBox x:Name="txtName" Text="{Binding SelectedEmp.Name}"/>
+        <Button Command="{Binding AddEmpCommand}"
+                CommandParameter="{Binding Text, ElementName=txtName}"/>
+        <ListBox ItemsSource="{Binding Emps}"
+                 SelectedItem="{Binding SelectedEmp}"
+                 DisplayMemberPath="Name"
+                 x:Name="empListBox"/>
+        <Label x:Name="label" Content="{Binding SelectedItem, ElementName=empListBox}"
+               HorizontalAlignment="Center"/>
+    </StackPanel>
+</Window>
